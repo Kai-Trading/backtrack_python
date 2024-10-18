@@ -10,8 +10,12 @@ ticker = "^NDX"
 start_date = (pd.to_datetime("today") - pd.DateOffset(years=31)).strftime('%Y-%m-%d')
 end_date = pd.to_datetime("today").strftime('%Y-%m-%d')
 nasdaq = yf.Ticker(ticker)
-# hist = nasdaq.history(start=start_date, end=end_date, interval='1d')
-# hist.to_pickle("nasdaq.df")
+
+# Lade Daten herunter und speichere
+hist = nasdaq.history(start=start_date, end=end_date, interval='1d') 
+hist.to_pickle("nasdaq.df")
+
+# Daten aus Datei laden
 hist = pd.read_pickle("nasdaq.df")
 
 # Berechnung des SMA 200 und prozentualer Abstand vom SMA 200
